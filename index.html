@@ -300,13 +300,24 @@
 
     /* WEATHER */
 
-    .weather-card {
+    .weather-row {
       margin-top: 34px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      max-width: 600px;
+    }
+
+    .weather-card {
       padding: 20px;
       border: 1px solid var(--line);
       border-radius: 9px;
       background: var(--paper);
       max-width: 600px;
+    }
+
+    .weather-row .weather-card {
+      max-width: none;
     }
 
     .weather-top {
@@ -947,6 +958,12 @@
       }
     }
 
+    @media (max-width: 640px) {
+      .weather-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
     @media (max-width: 520px) {
       .nav {
         gap: 12px;
@@ -1103,99 +1120,205 @@
 
             <!-- LIVE WEATHER -->
 
-            <div
-              class="weather-card"
-              id="weather-card"
-              aria-live="polite"
-            >
+            <div class="weather-row">
 
-              <div class="weather-top">
+              <div
+                class="weather-card"
+                id="weather-card"
+                aria-live="polite"
+              >
 
-                <div>
-                  <div class="weather-location">
-                    Madrid, Spain
+                <div class="weather-top">
+
+                  <div>
+                    <div class="weather-location">
+                      Madrid, Spain
+                    </div>
+
+                    <div
+                      class="weather-updated"
+                      id="weather-updated"
+                    >
+                      Loading live weather...
+                    </div>
                   </div>
 
                   <div
-                    class="weather-updated"
-                    id="weather-updated"
+                    class="weather-icon"
+                    id="weather-icon"
+                    aria-hidden="true"
                   >
-                    Loading live weather...
+                    •
                   </div>
+
                 </div>
 
-                <div
-                  class="weather-icon"
-                  id="weather-icon"
-                  aria-hidden="true"
-                >
-                  •
+                <div class="weather-main">
+
+                  <span
+                    class="weather-temperature"
+                    id="weather-temperature"
+                  >
+                    —
+                  </span>
+
+                  <span
+                    class="weather-description"
+                    id="weather-description"
+                  >
+                    Loading...
+                  </span>
+
+                </div>
+
+                <div class="weather-details">
+
+                  <div class="weather-detail">
+
+                    <span class="weather-detail-label">
+                      Feels like
+                    </span>
+
+                    <span
+                      class="weather-detail-value"
+                      id="weather-apparent"
+                    >
+                      —
+                    </span>
+
+                  </div>
+
+                  <div class="weather-detail">
+
+                    <span class="weather-detail-label">
+                      Humidity
+                    </span>
+
+                    <span
+                      class="weather-detail-value"
+                      id="weather-humidity"
+                    >
+                      —
+                    </span>
+
+                  </div>
+
+                  <div class="weather-detail">
+
+                    <span class="weather-detail-label">
+                      Wind
+                    </span>
+
+                    <span
+                      class="weather-detail-value"
+                      id="weather-wind"
+                    >
+                      —
+                    </span>
+
+                  </div>
+
                 </div>
 
               </div>
 
-              <div class="weather-main">
+              <!-- ADDITIONAL TEMPERATURE CARD: today's high / low -->
 
-                <span
-                  class="weather-temperature"
-                  id="weather-temperature"
-                >
-                  —
-                </span>
+              <div
+                class="weather-card"
+                id="forecast-card"
+                aria-live="polite"
+              >
 
-                <span
-                  class="weather-description"
-                  id="weather-description"
-                >
-                  Loading...
-                </span>
+                <div class="weather-top">
 
-              </div>
+                  <div>
+                    <div class="weather-location">
+                      Today's range
+                    </div>
 
-              <div class="weather-details">
+                    <div
+                      class="weather-updated"
+                      id="forecast-updated"
+                    >
+                      Loading live weather...
+                    </div>
+                  </div>
 
-                <div class="weather-detail">
+                  <div
+                    class="weather-icon"
+                    id="forecast-icon"
+                    aria-hidden="true"
+                  >
+                    •
+                  </div>
 
-                  <span class="weather-detail-label">
-                    Feels like
+                </div>
+
+                <div class="weather-main">
+
+                  <span
+                    class="weather-temperature"
+                    id="forecast-high"
+                  >
+                    —
                   </span>
 
                   <span
-                    class="weather-detail-value"
-                    id="weather-apparent"
+                    class="weather-description"
+                    id="forecast-low-label"
                   >
-                    —
+                    Loading...
                   </span>
 
                 </div>
 
-                <div class="weather-detail">
+                <div class="weather-details">
 
-                  <span class="weather-detail-label">
-                    Humidity
-                  </span>
+                  <div class="weather-detail">
 
-                  <span
-                    class="weather-detail-value"
-                    id="weather-humidity"
-                  >
-                    —
-                  </span>
+                    <span class="weather-detail-label">
+                      High
+                    </span>
 
-                </div>
+                    <span
+                      class="weather-detail-value"
+                      id="forecast-high-value"
+                    >
+                      —
+                    </span>
 
-                <div class="weather-detail">
+                  </div>
 
-                  <span class="weather-detail-label">
-                    Wind
-                  </span>
+                  <div class="weather-detail">
 
-                  <span
-                    class="weather-detail-value"
-                    id="weather-wind"
-                  >
-                    —
-                  </span>
+                    <span class="weather-detail-label">
+                      Low
+                    </span>
+
+                    <span
+                      class="weather-detail-value"
+                      id="forecast-low-value"
+                    >
+                      —
+                    </span>
+
+                  </div>
+
+                  <div class="weather-detail">
+
+                    <span class="weather-detail-label">
+                      Rain chance
+                    </span>
+
+                    <span
+                      class="weather-detail-value"
+                      id="forecast-precip"
+                    >
+                      —
+                    </span>
+
+                  </div>
 
                 </div>
 
@@ -1764,7 +1887,15 @@
         description: document.getElementById("weather-description"),
         apparent: document.getElementById("weather-apparent"),
         humidity: document.getElementById("weather-humidity"),
-        wind: document.getElementById("weather-wind")
+        wind: document.getElementById("weather-wind"),
+
+        forecastUpdated: document.getElementById("forecast-updated"),
+        forecastIcon: document.getElementById("forecast-icon"),
+        forecastHigh: document.getElementById("forecast-high"),
+        forecastLowLabel: document.getElementById("forecast-low-label"),
+        forecastHighValue: document.getElementById("forecast-high-value"),
+        forecastLowValue: document.getElementById("forecast-low-value"),
+        forecastPrecip: document.getElementById("forecast-precip")
       };
 
       function weatherDescription(code) {
@@ -1829,6 +1960,13 @@
             "weather_code",
             "wind_speed_10m"
           ].join(","),
+          daily: [
+            "temperature_2m_max",
+            "temperature_2m_min",
+            "precipitation_probability_max",
+            "weather_code"
+          ].join(","),
+          forecast_days: 1,
           timezone: MADRID.timezone,
           temperature_unit: "celsius",
           wind_speed_unit: "kmh"
@@ -1885,6 +2023,43 @@
           weatherElements.updated.textContent =
             `Updated ${formatWeatherTime(current.time)} · live`;
 
+          /* ADDITIONAL TEMPERATURE CARD: today's high / low */
+
+          const daily = data.daily;
+
+          if (daily && daily.time && daily.time.length) {
+            const [dailyDescription, dailyIcon] =
+              weatherDescription(
+                daily.weather_code[0]
+              );
+
+            const high = Math.round(daily.temperature_2m_max[0]);
+            const low = Math.round(daily.temperature_2m_min[0]);
+            const precip = Math.round(
+              daily.precipitation_probability_max[0]
+            );
+
+            weatherElements.forecastIcon.textContent = dailyIcon;
+
+            weatherElements.forecastHigh.textContent =
+              `${high}°C`;
+
+            weatherElements.forecastLowLabel.textContent =
+              `${dailyDescription} · low ${low}°C`;
+
+            weatherElements.forecastHighValue.textContent =
+              `${high}°C`;
+
+            weatherElements.forecastLowValue.textContent =
+              `${low}°C`;
+
+            weatherElements.forecastPrecip.textContent =
+              `${precip}%`;
+
+            weatherElements.forecastUpdated.textContent =
+              `Updated ${formatWeatherTime(current.time)} · live`;
+          }
+
         } catch (error) {
           console.error(
             "Unable to load Madrid weather:",
@@ -1910,6 +2085,26 @@
             "—";
 
           weatherElements.icon.textContent = "!";
+
+          weatherElements.forecastUpdated.textContent =
+            "Weather temporarily unavailable";
+
+          weatherElements.forecastLowLabel.textContent =
+            "Unable to load live conditions";
+
+          weatherElements.forecastHigh.textContent =
+            "—";
+
+          weatherElements.forecastHighValue.textContent =
+            "—";
+
+          weatherElements.forecastLowValue.textContent =
+            "—";
+
+          weatherElements.forecastPrecip.textContent =
+            "—";
+
+          weatherElements.forecastIcon.textContent = "!";
         }
       }
 
